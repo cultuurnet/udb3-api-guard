@@ -1,0 +1,53 @@
+<?php
+
+namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
+
+use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
+use ValueObjects\StringLiteral\StringLiteral;
+
+class CultureFeedConsumerAdapterTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @test
+     */
+    public function it_should_adapt_a_culturefeed_consumer_to_the_api_guard_consumer_interface()
+    {
+        $cfConsumer = new \CultureFeed_Consumer();
+        $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
+        $cfConsumer->searchPrefixSapi3 = 'labels:foo AND regions:gem-leuven';
+
+        $adapter = new CultureFeedConsumerAdapter($cfConsumer);
+
+        $expectedApiKey = new ApiKey('712a7071-e251-489d-8a73-46346078a072');
+        $expectedQuery = new StringLiteral('labels:foo AND regions:gem-leuven');
+
+        $this->assertEquals($expectedApiKey, $adapter->getApiKey());
+        $this->assertEquals($expectedQuery, $adapter->getDefaultQuery());
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_return_null_as_default_query_if_the_injected_consumer_has_no_sapi3_search_prefix()
+    {
+        $cfConsumer = new \CultureFeed_Consumer();
+        $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
+
+        $adapter = new CultureFeedConsumerAdapter($cfConsumer);
+
+        $this->assertEquals(new ApiKey('712a7071-e251-489d-8a73-46346078a072'), $adapter->getApiKey());
+        $this->assertNull($adapter->getDefaultQuery());
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_throw_an_exception_if_a_culturefeed_consumer_without_api_key_is_injected()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Given CultureFeed_Consumer has no "apiKeySapi3" value.');
+
+        $cfConsumer = new \CultureFeed_Consumer();
+        new CultureFeedConsumerAdapter($cfConsumer);
+    }
+}
