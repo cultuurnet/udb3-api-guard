@@ -18,7 +18,7 @@
     "squizlabs/php_codesniffer": "~2.3",
     "phing/phing": "~2.11",
     "satooshi/php-coveralls": "~0.7",
-    "cultuurnet/culturefeed-php": "dev-feature/III-2068 as 1.6"
+    "cultuurnet/culturefeed-php": "~1.8"
   },
   "suggest": {
     "cultuurnet/culturefeed-php": "To use the CultureFeed implementations of ApiKey and Consumer interfaces."
