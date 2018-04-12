@@ -50,4 +50,41 @@ class CultureFeedConsumerAdapterTest extends \PHPUnit_Framework_TestCase
         $cfConsumer = new \CultureFeed_Consumer();
         new CultureFeedConsumerAdapter($cfConsumer);
     }
+
+    /**
+     * @test
+     */
+    public function it_should_return_a_list_of_group_ids_as_string_literals()
+    {
+        $cfConsumer = new \CultureFeed_Consumer();
+        $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
+        $cfConsumer->group = ['103fc3b3-7f20-4802-9e3a-3b540c8afaaa', '7538c603-0383-4842-bd96-c2cdab90333b'];
+
+        $expected = [
+            new StringLiteral('103fc3b3-7f20-4802-9e3a-3b540c8afaaa'),
+            new StringLiteral('7538c603-0383-4842-bd96-c2cdab90333b'),
+        ];
+
+        $adapter = new CultureFeedConsumerAdapter($cfConsumer);
+        $actual = $adapter->getPermissionGroupIds();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_return_an_empty_list_of_group_ids_if_the_cf_consumer_has_no_groups()
+    {
+        $cfConsumer = new \CultureFeed_Consumer();
+        $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
+        $cfConsumer->group = null;
+
+        $expected = [];
+
+        $adapter = new CultureFeedConsumerAdapter($cfConsumer);
+        $actual = $adapter->getPermissionGroupIds();
+
+        $this->assertEquals($expected, $actual);
+    }
 }
