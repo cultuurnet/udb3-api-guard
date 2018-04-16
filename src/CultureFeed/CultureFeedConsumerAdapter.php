@@ -44,4 +44,19 @@ class CultureFeedConsumerAdapter implements ConsumerInterface
             return null;
         }
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPermissionGroupIds()
+    {
+        $groupIds = is_array($this->cfConsumer->group) ? $this->cfConsumer->group : [];
+
+        return array_map(
+            function ($groupId) {
+                return new StringLiteral((string) $groupId);
+            },
+            $groupIds
+        );
+    }
 }

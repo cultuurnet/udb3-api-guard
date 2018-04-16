@@ -16,4 +16,9 @@ interface ConsumerInterface
      * @return StringLiteral|null
      */
     public function getDefaultQuery();
+
+    /**
+     * @return StringLiteral[]
+     */
+    public function getPermissionGroupIds();
 }
