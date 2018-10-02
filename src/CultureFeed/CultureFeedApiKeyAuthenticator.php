@@ -20,6 +20,11 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     private $consumerWriteRepository;
 
     /**
+     * @var bool
+     */
+    private $includePermissions;
+
+    /**
      * @param \ICultureFeed $cultureFeed
      * @param ConsumerWriteRepositoryInterface $consumerWriteRepository
      *   CultureFeed returns a consumer detail while authenticating.
@@ -28,10 +33,12 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
      */
     public function __construct(
         \ICultureFeed $cultureFeed,
-        ConsumerWriteRepositoryInterface $consumerWriteRepository
+        ConsumerWriteRepositoryInterface $consumerWriteRepository,
+        $includePermissions = FALSE
     ) {
         $this->cultureFeed = $cultureFeed;
         $this->consumerWriteRepository = $consumerWriteRepository;
+        $this->includePermissions = $includePermissions;
     }
 
     /**
@@ -41,7 +48,10 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     public function authenticate(ApiKey $apiKey)
     {
         try {
-            $consumer = $this->cultureFeed->getServiceConsumerByApiKey($apiKey->toNative());
+            $consumer = $this->cultureFeed->getServiceConsumerByApiKey(
+                $apiKey->toNative(),
+                $this->includePermissions
+            );
         } catch (\Exception $e) {
             throw new ApiKeyAuthenticationException(
                 'Could not authenticate with API key "' . $apiKey->toNative() . '".'
