@@ -34,7 +34,7 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     public function __construct(
         \ICultureFeed $cultureFeed,
         ConsumerWriteRepositoryInterface $consumerWriteRepository,
-        $includePermissions = FALSE
+        $includePermissions = false
     ) {
         $this->cultureFeed = $cultureFeed;
         $this->consumerWriteRepository = $consumerWriteRepository;
