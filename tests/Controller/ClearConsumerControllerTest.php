@@ -38,6 +38,8 @@ class ClearConsumerControllerTest extends \PHPUnit_Framework_TestCase
             ->method('clearConsumer')
             ->with(new ApiKey($apiKey));
 
-        $this->controller->clear($apiKey);
+        $response = $this->controller->clear($apiKey);
+
+        $this->assertEquals(202, $response->getStatusCode());
     }
 }

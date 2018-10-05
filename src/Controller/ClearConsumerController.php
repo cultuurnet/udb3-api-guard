@@ -5,6 +5,7 @@ namespace CultuurNet\UDB3\ApiGuard\Controller;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerWriteRepositoryInterface;
 use CultuurNet\UDB3\Label\ReadModels\JSON\Repository\WriteRepositoryInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClearConsumerController
 {
@@ -28,5 +29,7 @@ class ClearConsumerController
     public function clear($apiKey)
     {
         $this->repository->clearConsumer(new ApiKey($apiKey));
+
+        return new Response('', Response::HTTP_ACCEPTED);
     }
 }
