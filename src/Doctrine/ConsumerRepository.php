@@ -31,13 +31,27 @@ class ConsumerRepository implements ConsumerReadRepositoryInterface, ConsumerWri
         $this->cache = $cache;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getConsumer(ApiKey $apiKey)
     {
         return $this->cache->fetch($apiKey->toNative());
     }
 
+    /**
+     * @inheritdoc
+     */
     public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer)
     {
         $this->cache->save($apiKey->toNative(), $consumer, $this->lifeTime);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function clearConsumer(ApiKey $apiKey)
+    {
+        $this->cache->delete($apiKey->toNative());
     }
 }

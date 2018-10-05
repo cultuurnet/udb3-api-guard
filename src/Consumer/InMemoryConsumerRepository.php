@@ -35,4 +35,14 @@ class InMemoryConsumerRepository implements
         $apiKey = $apiKey->toNative();
         $this->consumers[$apiKey] = $consumer;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function clearConsumer(ApiKey $apiKey)
+    {
+        if (isset($this->consumers[$apiKey->toNative()])) {
+            unset($this->consumers[$apiKey->toNative()]);
+        }
+    }
 }

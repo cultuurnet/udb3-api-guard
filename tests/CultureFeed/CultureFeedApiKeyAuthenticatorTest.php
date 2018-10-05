@@ -30,6 +30,7 @@ class CultureFeedApiKeyAuthenticatorTest extends \PHPUnit_Framework_TestCase
 
         $this->authenticator = new CultureFeedApiKeyAuthenticator(
             $this->cultureFeed,
+            $this->consumerRepository,
             $this->consumerRepository
         );
     }
@@ -80,5 +81,30 @@ class CultureFeedApiKeyAuthenticatorTest extends \PHPUnit_Framework_TestCase
         $this->expectExceptionMessage('Could not authenticate with API key "aeef4df2-07bc-4edb-a705-84acd7e700c8".');
 
         $this->authenticator->authenticate($apiKey);
+    }
+
+    /**
+     * @test
+     */
+    public function it_immediately_authenticaties_if_the_consumer_is_found_in_the_repository()
+    {
+        $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
+
+        $expectedCfConsumer = new \CultureFeed_Consumer();
+        $expectedCfConsumer->apiKeySapi3 = 'aeef4df2-07bc-4edb-a705-84acd7e700c8';
+        $expectedCfConsumer->searchPrefixSapi3 = 'labels:foo AND regions:gem-leuven';
+
+        $expectedConsumer = new CultureFeedConsumerAdapter($expectedCfConsumer);
+
+        $this->consumerRepository->setConsumer($apiKey, $expectedConsumer);
+
+        $this->cultureFeed->expects($this->never())
+            ->method('getServiceConsumerByApiKey');
+
+        $this->authenticator->authenticate($apiKey);
+
+        $actualConsumer = $this->consumerRepository->getConsumer($apiKey);
+
+        $this->assertEquals($expectedConsumer, $actualConsumer);
     }
 }

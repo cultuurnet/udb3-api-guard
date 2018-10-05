@@ -37,4 +37,19 @@ class InMemoryConsumerRepositoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($consumer, $this->repository->getConsumer($apiKey));
     }
+
+    /**
+     * @test
+     */
+    public function it_forgets_about_a_consumer_once_it_is_cleared()
+    {
+        $apiKey = new ApiKey(uniqid());
+        $consumer = $this->createMock(ConsumerInterface::class);
+
+        $this->repository->setConsumer($apiKey, $consumer);
+
+        $this->repository->clearConsumer($apiKey);
+
+        $this->assertNull($this->repository->getConsumer($apiKey));
+    }
 }

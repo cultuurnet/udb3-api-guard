@@ -11,4 +11,10 @@ interface ConsumerWriteRepositoryInterface
      * @param ConsumerInterface
      */
     public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer);
+
+    /**
+     * @param \CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey $apiKey
+     * @return void
+     */
+    public function clearConsumer(ApiKey $apiKey);
 }
