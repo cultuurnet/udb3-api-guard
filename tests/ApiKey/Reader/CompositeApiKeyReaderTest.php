@@ -3,7 +3,7 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use Symfony\Component\HttpFoundation\Request;
+use Slim\Psr7\Factory\ServerRequestFactory;
 
 class CompositeApiKeyReaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,7 +14,8 @@ class CompositeApiKeyReaderTest extends \PHPUnit_Framework_TestCase
     {
         $expectedApiKey = new ApiKey('8f244d08-36e6-49e5-a201-b8119408d2b7');
 
-        $request = new Request();
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/');
 
         $reader1 = $this->getMockReader();
         $reader2 = $this->getMockReader();
@@ -49,7 +50,8 @@ class CompositeApiKeyReaderTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_return_null_if_none_of_the_injected_readers_returns_an_api_key()
     {
-        $request = new Request();
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/');
 
         $reader1 = $this->getMockReader();
         $reader2 = $this->getMockReader();

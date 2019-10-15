@@ -3,7 +3,7 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use Symfony\Component\HttpFoundation\Request;
+use Slim\Psr7\Factory\ServerRequestFactory;
 
 class QueryParameterApiKeyReaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +22,8 @@ class QueryParameterApiKeyReaderTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_return_null_if_the_configured_query_parameter_is_not_set()
     {
-        $request = Request::create('https://search.uitdatabank.be', 'GET');
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/');
         $this->assertNull($this->reader->read($request));
     }
 
@@ -31,11 +32,8 @@ class QueryParameterApiKeyReaderTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_return_null_if_the_configured_query_parameter_is_an_empty_string()
     {
-        $request = Request::create(
-            'https://search.uitdatabank.be',
-            'GET',
-            ['apiKey' => '']
-        );
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/?apiKey=');
 
         $this->assertNull($this->reader->read($request));
     }
@@ -47,11 +45,8 @@ class QueryParameterApiKeyReaderTest extends \PHPUnit_Framework_TestCase
     {
         $expected = new ApiKey('4f3024ab-cfbb-40a0-848c-cb88ee999987');
 
-        $request = Request::create(
-            'https://search.uitdatabank.be',
-            'GET',
-            ['apiKey' => '4f3024ab-cfbb-40a0-848c-cb88ee999987']
-        );
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/?apiKey=4f3024ab-cfbb-40a0-848c-cb88ee999987');
 
         $this->assertEquals($expected, $this->reader->read($request));
     }

@@ -2,13 +2,9 @@
 
 namespace CultuurNet\UDB3\ApiGuard\Request;
 
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
 
 interface RequestAuthenticatorInterface
 {
-    /**
-     * @param Request $request
-     * @throws RequestAuthenticationException
-     */
-    public function authenticate(Request $request);
+    public function authenticate(ServerRequestInterface $request): void;
 }

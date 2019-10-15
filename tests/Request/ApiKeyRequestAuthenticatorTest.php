@@ -6,7 +6,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
 use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\QueryParameterApiKeyReader;
-use Symfony\Component\HttpFoundation\Request;
+use Slim\Psr7\Factory\ServerRequestFactory;
 
 class ApiKeyRequestAuthenticatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,7 +41,8 @@ class ApiKeyRequestAuthenticatorTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_throw_an_exception_if_no_api_key_can_be_found_in_the_request()
     {
-        $request = new Request();
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/');
 
         $this->expectException(RequestAuthenticationException::class);
         $this->expectExceptionMessage('No API key provided.');
@@ -54,7 +55,8 @@ class ApiKeyRequestAuthenticatorTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_throw_an_exception_if_the_provided_api_key_is_invalid()
     {
-        $request = new Request(['apiKey' => '0649b422-98c2-4ea0-a2c6-65bf935d11d5']);
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/?apiKey=0649b422-98c2-4ea0-a2c6-65bf935d11d5');
 
         $this->apiKeyAuthenticator->expects($this->once())
             ->method('authenticate')
@@ -72,7 +74,8 @@ class ApiKeyRequestAuthenticatorTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_not_throw_an_exception_if_the_api_key_does_not_raise_an_authentication_exception()
     {
-        $request = new Request(['apiKey' => '0649b422-98c2-4ea0-a2c6-65bf935d11d5']);
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/?apiKey=0649b422-98c2-4ea0-a2c6-65bf935d11d5');
 
         $this->apiKeyAuthenticator->expects($this->once())
             ->method('authenticate')

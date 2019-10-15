@@ -3,13 +3,9 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
 
 interface ApiKeyReaderInterface
 {
-    /**
-     * @param Request $request
-     * @return ApiKey|null
-     */
-    public function read(Request $request);
+    public function read(ServerRequestInterface $request): ?ApiKey;
 }

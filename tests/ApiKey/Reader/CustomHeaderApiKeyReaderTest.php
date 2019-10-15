@@ -3,7 +3,11 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use Symfony\Component\HttpFoundation\Request;
+use Slim\Psr7\Factory\ServerRequestFactory;
+use Slim\Psr7\Factory\StreamFactory;
+use Slim\Psr7\Factory\UriFactory;
+use Slim\Psr7\Headers;
+use Slim\Psr7\Request;
 
 class CustomHeaderApiKeyReaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +26,9 @@ class CustomHeaderApiKeyReaderTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_return_null_if_the_configured_header_is_not_set()
     {
-        $request = Request::create('https://search.uitdatabank.be', 'GET');
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/');
+
         $this->assertNull($this->reader->read($request));
     }
 
@@ -31,14 +37,8 @@ class CustomHeaderApiKeyReaderTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_return_null_if_the_configured_header_is_an_empty_string()
     {
-        $request = Request::create(
-            'https://search.uitdatabank.be',
-            'GET',
-            [],
-            [],
-            [],
-            ['HTTP_X_API_KEY' => '']
-        );
+        $request = (new ServerRequestFactory())
+            ->createServerRequest('GET', '/', ['X-Api-Key' => '']);
 
         $this->assertNull($this->reader->read($request));
     }
@@ -50,13 +50,15 @@ class CustomHeaderApiKeyReaderTest extends \PHPUnit_Framework_TestCase
     {
         $expected = new ApiKey('4f3024ab-cfbb-40a0-848c-cb88ee999987');
 
-        $request = Request::create(
-            'https://search.uitdatabank.be',
+        $uri = (new UriFactory())->createUri('/');
+        $body = (new StreamFactory())->createStream();
+        $request = new Request(
             'GET',
+            $uri,
+            new Headers(['X-Api-Key' => '4f3024ab-cfbb-40a0-848c-cb88ee999987']),
             [],
             [],
-            [],
-            ['HTTP_X_API_KEY' => '4f3024ab-cfbb-40a0-848c-cb88ee999987']
+            $body
         );
 
         $this->assertEquals($expected, $this->reader->read($request));

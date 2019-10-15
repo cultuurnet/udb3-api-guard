@@ -5,7 +5,7 @@ namespace CultuurNet\UDB3\ApiGuard\Request;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
 use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\ApiKeyReaderInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
 
 class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
 {
@@ -31,15 +31,11 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
         $this->apiKeyAuthenticator = $apiKeyAuthenticator;
     }
 
-    /**
-     * @param Request $request
-     * @throws RequestAuthenticationException
-     */
-    public function authenticate(Request $request)
+    public function authenticate(ServerRequestInterface $request): void
     {
         $apiKey = $this->apiKeyReader->read($request);
 
-        if (is_null($apiKey)) {
+        if ($apiKey === null) {
             throw new RequestAuthenticationException('No API key provided.');
         }
 

@@ -3,7 +3,7 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
 
 class CustomHeaderApiKeyReader implements ApiKeyReaderInterface
 {
@@ -20,18 +20,14 @@ class CustomHeaderApiKeyReader implements ApiKeyReaderInterface
         $this->headerName = (string) $headerName;
     }
 
-    /**
-     * @param Request $request
-     * @return ApiKey|null
-     */
-    public function read(Request $request)
+    public function read(ServerRequestInterface $request): ?ApiKey
     {
-        $apiKeyAsString = (string) $request->headers->get($this->headerName, '');
+        $apiKeys = $request->getHeader($this->headerName);
 
-        if (strlen($apiKeyAsString) == 0) {
+        if ($apiKeys === []) {
             return null;
-        } else {
-            return new ApiKey($apiKeyAsString);
         }
+
+        return new ApiKey(reset($apiKeys));
     }
 }
