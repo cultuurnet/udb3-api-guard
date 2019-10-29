@@ -9,6 +9,8 @@ use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerWriteRepositoryInterface;
 
 class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
 {
+    const STATUS_BLOCKED = 'BLOCKED';
+    const STATUS_REMOVED = 'REMOVED';
     /**
      * @var \ICultureFeed
      */
@@ -53,11 +55,27 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
                 $this->includePermissions
             );
         } catch (\Exception $e) {
-            throw new ApiKeyAuthenticationException(
-                'Could not authenticate with API key "' . $apiKey->toNative() . '".'
-            );
+            throw ApiKeyAuthenticationException::cultureFeedErrorForKey($apiKey);
         }
 
+        $this->guardAgainstInvalidConsumerStatus($apiKey, $consumer);
+
         $this->consumerWriteRepository->setConsumer($apiKey, new CultureFeedConsumerAdapter($consumer));
+    }
+
+    /**
+     * @param ApiKey $apiKey
+     * @param $consumer
+     * @throws ApiKeyAuthenticationException
+     */
+    public function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, $consumer): void
+    {
+        if ($consumer->status === self::STATUS_BLOCKED) {
+            throw ApiKeyAuthenticationException::keyBlocked($apiKey);
+        }
+
+        if ($consumer->status === self::STATUS_REMOVED) {
+            throw ApiKeyAuthenticationException::keyRemoved($apiKey);
+        }
     }
 }
