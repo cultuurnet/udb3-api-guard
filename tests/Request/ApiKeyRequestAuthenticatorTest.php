@@ -58,13 +58,16 @@ class ApiKeyRequestAuthenticatorTest extends \PHPUnit_Framework_TestCase
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/?apiKey=0649b422-98c2-4ea0-a2c6-65bf935d11d5');
 
+
+        $apiKey = new ApiKey('0649b422-98c2-4ea0-a2c6-65bf935d11d5');
+        $exception = ApiKeyAuthenticationException::forApiKey($apiKey);
         $this->apiKeyAuthenticator->expects($this->once())
             ->method('authenticate')
-            ->with(new ApiKey('0649b422-98c2-4ea0-a2c6-65bf935d11d5'))
-            ->willThrowException(new ApiKeyAuthenticationException('API key is invalid!!!11!'));
+            ->with($apiKey)
+            ->willThrowException($exception);
 
         $this->expectException(RequestAuthenticationException::class);
-        $this->expectExceptionMessage("Invalid API key provided (0649b422-98c2-4ea0-a2c6-65bf935d11d5).");
+        $this->expectExceptionMessage($exception->getMessage());
 
         $this->requestAuthenticator->authenticate($request);
     }
