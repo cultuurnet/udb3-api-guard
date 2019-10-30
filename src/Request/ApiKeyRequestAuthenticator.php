@@ -46,7 +46,7 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
         try {
             $this->apiKeyAuthenticator->authenticate($apiKey);
         } catch (ApiKeyAuthenticationException $e) {
-            throw new RequestAuthenticationException("Invalid API key provided ({$apiKey->toNative()}).");
+            throw new RequestAuthenticationException($e->getMessage());
         }
     }
 }
