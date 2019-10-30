@@ -81,4 +81,48 @@ class CultureFeedApiKeyAuthenticatorTest extends \PHPUnit_Framework_TestCase
 
         $this->authenticator->authenticate($apiKey);
     }
+
+    /**
+     * @test
+     * @dataProvider invalidStatusConsumers
+     * @param string $status
+     * @param string $message
+     * @throws ApiKeyAuthenticationException
+     */
+    public function it_should_throw_an_authentication_exception_if_consumer_is_it_has_invalid_status(
+        string $status,
+        string $message
+    ) {
+
+        $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
+
+        $expectedCfConsumer = new \CultureFeed_Consumer();
+        $expectedCfConsumer->apiKeySapi3 = 'aeef4df2-07bc-4edb-a705-84acd7e700c8';
+        $expectedCfConsumer->searchPrefixSapi3 = 'labels:foo AND regions:gem-leuven';
+        $expectedCfConsumer->status = $status;
+
+        $this->cultureFeed->expects($this->once())
+            ->method('getServiceConsumerByApiKey')
+            ->with($apiKey->toNative())
+            ->willReturn($expectedCfConsumer);
+
+        $this->expectException(ApiKeyAuthenticationException::class);
+        $this->expectExceptionMessage('Could not authenticate with API key "aeef4df2-07bc-4edb-a705-84acd7e700c8". ' . $message);
+
+        $this->authenticator->authenticate($apiKey);
+    }
+
+    public function invalidStatusConsumers(): array
+    {
+        return [
+            [
+                CultureFeedApiKeyAuthenticator::STATUS_BLOCKED,
+                'Key is blocked'
+            ],
+            [
+                CultureFeedApiKeyAuthenticator::STATUS_REMOVED,
+                'Key is removed'
+            ]
+        ];
+    }
 }
