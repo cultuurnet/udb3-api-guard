@@ -55,7 +55,7 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
                 $this->includePermissions
             );
         } catch (\Exception $e) {
-            throw ApiKeyAuthenticationException::cultureFeedErrorForKey($apiKey);
+            throw ApiKeyAuthenticationException::forApiKey($apiKey);
         }
 
         $this->guardAgainstInvalidConsumerStatus($apiKey, $consumer);
@@ -71,11 +71,11 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     public function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, $consumer): void
     {
         if ($consumer->status === self::STATUS_BLOCKED) {
-            throw ApiKeyAuthenticationException::keyBlocked($apiKey);
+            throw ApiKeyAuthenticationException::forApiKey($apiKey, 'Key is blocked');
         }
 
         if ($consumer->status === self::STATUS_REMOVED) {
-            throw ApiKeyAuthenticationException::keyRemoved($apiKey);
+            throw ApiKeyAuthenticationException::forApiKey($apiKey, 'Key is removed');
         }
     }
 }

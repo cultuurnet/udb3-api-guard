@@ -4,23 +4,14 @@ namespace CultuurNet\UDB3\ApiGuard\ApiKey;
 
 class ApiKeyAuthenticationException extends \Exception
 {
-    public static function cultureFeedErrorForKey(ApiKey $apiKey): ApiKeyAuthenticationException
+    public static function forApiKey(ApiKey $apiKey, string $additionalMessage = null): ApiKeyAuthenticationException
     {
-        return new self(self::messageForKey($apiKey));
-    }
+        $message = 'Could not authenticate with API key "' . $apiKey->toNative() . '".';
 
-    public static function keyBlocked(ApiKey $apiKey): ApiKeyAuthenticationException
-    {
-        return new self(self::messageForKey($apiKey) . ' Key is blocked');
-    }
+        if ($additionalMessage !== null) {
+            $message .= ' ' . $additionalMessage;
+        }
 
-    public static function keyRemoved(ApiKey $apiKey): ApiKeyAuthenticationException
-    {
-        return new self(self::messageForKey($apiKey) . ' Key is removed');
-    }
-
-    private static function messageForKey(ApiKey $apiKey): string
-    {
-        return 'Could not authenticate with API key "' . $apiKey->toNative() . '".';
+        return new self($message);
     }
 }
