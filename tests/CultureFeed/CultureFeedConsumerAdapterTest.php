@@ -15,6 +15,7 @@ class CultureFeedConsumerAdapterTest extends \PHPUnit_Framework_TestCase
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
         $cfConsumer->searchPrefixSapi3 = 'labels:foo AND regions:gem-leuven';
+        $cfConsumer->name = 'name';
 
         $adapter = new CultureFeedConsumerAdapter($cfConsumer);
 
@@ -23,6 +24,7 @@ class CultureFeedConsumerAdapterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expectedApiKey, $adapter->getApiKey());
         $this->assertEquals($expectedQuery, $adapter->getDefaultQuery());
+        $this->assertEquals('name', $adapter->getName());
     }
 
     /**

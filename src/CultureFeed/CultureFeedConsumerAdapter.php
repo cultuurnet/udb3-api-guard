@@ -59,4 +59,9 @@ class CultureFeedConsumerAdapter implements ConsumerInterface
             $groupIds
         );
     }
+
+    public function getName(): ?string
+    {
+        return  $this->cfConsumer->name;
+    }
 }
