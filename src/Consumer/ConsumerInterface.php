@@ -21,4 +21,6 @@ interface ConsumerInterface
      * @return StringLiteral[]
      */
     public function getPermissionGroupIds();
+
+    public function getName() : ?string;
 }
