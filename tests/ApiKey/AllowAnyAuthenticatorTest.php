@@ -14,5 +14,6 @@ class AllowAnyAuthenticatorTest extends TestCase
         $randomApiKey = new ApiKey(uniqid());
         $authenticator = new AllowAnyAuthenticator();
         $authenticator->authenticate($randomApiKey);
+        $this->addToAssertionCount(1);
     }
 }
