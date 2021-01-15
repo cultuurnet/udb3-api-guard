@@ -5,8 +5,9 @@ namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\Consumer\InMemoryConsumerRepository;
+use PHPUnit\Framework\TestCase;
 
-class CultureFeedApiKeyAuthenticatorTest extends \PHPUnit_Framework_TestCase
+class CultureFeedApiKeyAuthenticatorTest extends TestCase
 {
     /**
      * @var \ICultureFeed|\PHPUnit_Framework_MockObject_MockObject

@@ -3,13 +3,14 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
+use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Factory\UriFactory;
 use Slim\Psr7\Headers;
 use Slim\Psr7\Request;
 
-class CustomHeaderApiKeyReaderTest extends \PHPUnit_Framework_TestCase
+class CustomHeaderApiKeyReaderTest extends TestCase
 {
     /**
      * @var CustomHeaderApiKeyReader

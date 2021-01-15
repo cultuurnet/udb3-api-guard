@@ -6,9 +6,10 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
 use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\QueryParameterApiKeyReader;
+use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
-class ApiKeyRequestAuthenticatorTest extends \PHPUnit_Framework_TestCase
+class ApiKeyRequestAuthenticatorTest extends TestCase
 {
     /**
      * @var QueryParameterApiKeyReader

@@ -2,7 +2,9 @@
 
 namespace CultuurNet\UDB3\ApiGuard\ApiKey;
 
-class AllowAnyAuthenticatorTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class AllowAnyAuthenticatorTest extends TestCase
 {
     /**
      * @test

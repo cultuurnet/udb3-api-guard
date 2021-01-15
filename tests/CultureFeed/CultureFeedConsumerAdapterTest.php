@@ -3,9 +3,10 @@
 namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
+use PHPUnit\Framework\TestCase;
 use ValueObjects\StringLiteral\StringLiteral;
 
-class CultureFeedConsumerAdapterTest extends \PHPUnit_Framework_TestCase
+class CultureFeedConsumerAdapterTest extends TestCase
 {
     /**
      * @test

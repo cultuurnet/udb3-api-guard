@@ -3,9 +3,10 @@
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
+use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
-class CompositeApiKeyReaderTest extends \PHPUnit_Framework_TestCase
+class CompositeApiKeyReaderTest extends TestCase
 {
     /**
      * @test
