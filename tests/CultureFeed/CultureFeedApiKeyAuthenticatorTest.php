@@ -108,7 +108,9 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
             ->willReturn($expectedCfConsumer);
 
         $this->expectException(ApiKeyAuthenticationException::class);
-        $this->expectExceptionMessage('Could not authenticate with API key "aeef4df2-07bc-4edb-a705-84acd7e700c8". ' . $message);
+        $this->expectExceptionMessage(
+            'Could not authenticate with API key "aeef4df2-07bc-4edb-a705-84acd7e700c8". ' . $message
+        );
 
         $this->authenticator->authenticate($apiKey);
     }
