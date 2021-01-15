@@ -40,5 +40,8 @@
     "branch-alias": {
       "dev-0.x": "0.x-dev"
     }
+  },
+  "scripts": {
+    "phing": "./vendor/bin/phing test"
   }
 }
