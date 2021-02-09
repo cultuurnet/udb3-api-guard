@@ -11,7 +11,8 @@
   ],
   "require": {
     "cultuurnet/valueobjects": "~3.0",
-    "psr/http-message": "^1.0"
+    "psr/http-message": "^1.0",
+    "phpstan/phpstan": "^0.12.74"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.5",
