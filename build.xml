@@ -5,6 +5,13 @@
         <include name="tests/**/*.php"/>
     </fileset>
 
+    <target name="phpstan">
+        <exec
+                command="./vendor/bin/phpstan analyse"
+                checkreturn="true"
+                passthru="true"/>
+    </target>
+
     <target name="coding-standards">
         <phpcodesniffer
                 standard="phpcs-ruleset.xml"
@@ -34,6 +41,7 @@
 
     <target name="test">
         <phingcall target="lint"/>
+        <phingcall target="phpstan"/>
         <phingcall target="unit-tests"/>
         <phingcall target="coding-standards"/>
     </target>
