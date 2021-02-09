@@ -26,7 +26,7 @@ class ApiKeyRequestAuthenticatorTest extends TestCase
      */
     private $requestAuthenticator;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->apiKeyReader = new QueryParameterApiKeyReader('apiKey');
         $this->apiKeyAuthenticator = $this->createMock(ApiKeyAuthenticatorInterface::class);
@@ -40,7 +40,7 @@ class ApiKeyRequestAuthenticatorTest extends TestCase
     /**
      * @test
      */
-    public function it_should_throw_an_exception_if_no_api_key_can_be_found_in_the_request()
+    public function it_should_throw_an_exception_if_no_api_key_can_be_found_in_the_request(): void
     {
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/');
@@ -54,7 +54,7 @@ class ApiKeyRequestAuthenticatorTest extends TestCase
     /**
      * @test
      */
-    public function it_should_throw_an_exception_if_the_provided_api_key_is_invalid()
+    public function it_should_throw_an_exception_if_the_provided_api_key_is_invalid(): void
     {
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/?apiKey=0649b422-98c2-4ea0-a2c6-65bf935d11d5');
@@ -76,7 +76,7 @@ class ApiKeyRequestAuthenticatorTest extends TestCase
     /**
      * @test
      */
-    public function it_should_not_throw_an_exception_if_the_api_key_does_not_raise_an_authentication_exception()
+    public function it_should_not_throw_an_exception_if_the_api_key_does_not_raise_an_authentication_exception(): void
     {
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/?apiKey=0649b422-98c2-4ea0-a2c6-65bf935d11d5');

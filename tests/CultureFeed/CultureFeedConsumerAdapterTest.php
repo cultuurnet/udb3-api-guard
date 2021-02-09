@@ -11,7 +11,7 @@ class CultureFeedConsumerAdapterTest extends TestCase
     /**
      * @test
      */
-    public function it_should_adapt_a_culturefeed_consumer_to_the_api_guard_consumer_interface()
+    public function it_should_adapt_a_culturefeed_consumer_to_the_api_guard_consumer_interface(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
@@ -31,7 +31,7 @@ class CultureFeedConsumerAdapterTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_null_as_default_query_if_the_injected_consumer_has_no_sapi3_search_prefix()
+    public function it_should_return_null_as_default_query_if_the_injected_consumer_has_no_sapi3_search_prefix(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
@@ -45,7 +45,7 @@ class CultureFeedConsumerAdapterTest extends TestCase
     /**
      * @test
      */
-    public function it_should_throw_an_exception_if_a_culturefeed_consumer_without_api_key_is_injected()
+    public function it_should_throw_an_exception_if_a_culturefeed_consumer_without_api_key_is_injected(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Given CultureFeed_Consumer has no "apiKeySapi3" value.');
@@ -57,7 +57,7 @@ class CultureFeedConsumerAdapterTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_a_list_of_group_ids_as_string_literals()
+    public function it_should_return_a_list_of_group_ids_as_string_literals(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
@@ -77,7 +77,7 @@ class CultureFeedConsumerAdapterTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_an_empty_list_of_group_ids_if_the_cf_consumer_has_no_groups()
+    public function it_should_return_an_empty_list_of_group_ids_if_the_cf_consumer_has_no_groups(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';

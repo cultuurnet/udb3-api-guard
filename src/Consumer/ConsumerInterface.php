@@ -7,20 +7,11 @@ use ValueObjects\StringLiteral\StringLiteral;
 
 interface ConsumerInterface
 {
-    /**
-     * @return ApiKey
-     */
-    public function getApiKey();
+    public function getApiKey(): ApiKey;
 
-    /**
-     * @return StringLiteral|null
-     */
-    public function getDefaultQuery();
+    public function getDefaultQuery(): ?StringLiteral;
 
-    /**
-     * @return StringLiteral[]
-     */
-    public function getPermissionGroupIds();
+    public function getPermissionGroupIds(): array;
 
     public function getName() : ?string;
 }
