@@ -13,9 +13,6 @@ class CultureFeedConsumerAdapter implements ConsumerInterface
      */
     private $cfConsumer;
 
-    /**
-     * @param \CultureFeed_Consumer $cfConsumer
-     */
     public function __construct(\CultureFeed_Consumer $cfConsumer)
     {
         if (!isset($cfConsumer->apiKeySapi3)) {
@@ -25,18 +22,12 @@ class CultureFeedConsumerAdapter implements ConsumerInterface
         $this->cfConsumer = clone $cfConsumer;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getApiKey()
+    public function getApiKey(): ApiKey
     {
         return new ApiKey($this->cfConsumer->apiKeySapi3);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getDefaultQuery()
+    public function getDefaultQuery(): ?StringLiteral
     {
         if ($this->cfConsumer->searchPrefixSapi3) {
             return new StringLiteral($this->cfConsumer->searchPrefixSapi3);
@@ -46,9 +37,9 @@ class CultureFeedConsumerAdapter implements ConsumerInterface
     }
 
     /**
-     * @inheritdoc
+     * @return StringLiteral[]
      */
-    public function getPermissionGroupIds()
+    public function getPermissionGroupIds(): array
     {
         $groupIds = is_array($this->cfConsumer->group) ? $this->cfConsumer->group : [];
 
