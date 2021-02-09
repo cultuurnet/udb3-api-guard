@@ -81,7 +81,7 @@ class CultureFeedConsumerAdapterTest extends TestCase
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
-        $cfConsumer->group = null;
+        $cfConsumer->group = [];
 
         $expected = [];
 
