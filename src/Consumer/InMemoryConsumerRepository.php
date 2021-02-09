@@ -13,10 +13,7 @@ class InMemoryConsumerRepository implements
      */
     private $consumers = [];
 
-    /**
-     * @inheritdoc
-     */
-    public function getConsumer(ApiKey $apiKey)
+    public function getConsumer(ApiKey $apiKey): ?ConsumerInterface
     {
         $apiKey = $apiKey->toNative();
 
