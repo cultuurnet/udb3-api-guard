@@ -27,10 +27,7 @@ class InMemoryConsumerRepository implements
         }
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer)
+    public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer): void
     {
         $apiKey = $apiKey->toNative();
         $this->consumers[$apiKey] = $consumer;
