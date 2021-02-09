@@ -63,7 +63,7 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
         $this->consumerWriteRepository->setConsumer($apiKey, new CultureFeedConsumerAdapter($consumer));
     }
 
-    public function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, \CultureFeed_Consumer $consumer): void
+    private function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, \CultureFeed_Consumer $consumer): void
     {
         if ($consumer->status === self::STATUS_BLOCKED) {
             throw ApiKeyAuthenticationException::forApiKey($apiKey, 'Key is blocked');
