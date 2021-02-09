@@ -27,8 +27,6 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     private $includePermissions;
 
     /**
-     * @param \ICultureFeed $cultureFeed
-     * @param ConsumerWriteRepositoryInterface $consumerWriteRepository
      *   CultureFeed returns a consumer detail while authenticating.
      *   This consumer will be written to the injected write repository as a
      *   form of caching.
@@ -36,7 +34,7 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     public function __construct(
         \ICultureFeed $cultureFeed,
         ConsumerWriteRepositoryInterface $consumerWriteRepository,
-        $includePermissions = false
+        bool $includePermissions = false
     ) {
         $this->cultureFeed = $cultureFeed;
         $this->consumerWriteRepository = $consumerWriteRepository;
