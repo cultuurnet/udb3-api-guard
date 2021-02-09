@@ -12,12 +12,9 @@ class CustomHeaderApiKeyReader implements ApiKeyReaderInterface
      */
     private $headerName;
 
-    /**
-     * @param string $headerName
-     */
-    public function __construct($headerName)
+    public function __construct(string $headerName)
     {
-        $this->headerName = (string) $headerName;
+        $this->headerName = $headerName;
     }
 
     public function read(ServerRequestInterface $request): ?ApiKey
