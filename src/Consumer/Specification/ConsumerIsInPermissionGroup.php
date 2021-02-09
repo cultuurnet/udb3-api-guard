@@ -12,18 +12,12 @@ class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
      */
     private $groupId;
 
-    /**
-     * @param StringLiteral $groupId
-     */
     public function __construct(StringLiteral $groupId)
     {
         $this->groupId = $groupId;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function satisfiedBy(ConsumerInterface $consumer)
+    public function satisfiedBy(ConsumerInterface $consumer): bool
     {
         $groupIds = $consumer->getPermissionGroupIds();
 
