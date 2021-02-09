@@ -24,7 +24,7 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
      */
     private $authenticator;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->cultureFeed = $this->createMock(\ICultureFeed::class);
         $this->consumerRepository = new InMemoryConsumerRepository();

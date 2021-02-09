@@ -26,7 +26,7 @@ class ApiKeyRequestAuthenticatorTest extends TestCase
      */
     private $requestAuthenticator;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->apiKeyReader = new QueryParameterApiKeyReader('apiKey');
         $this->apiKeyAuthenticator = $this->createMock(ApiKeyAuthenticatorInterface::class);

@@ -12,7 +12,7 @@ class InMemoryConsumerRepositoryTest extends TestCase
      */
     private $repository;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->repository = new InMemoryConsumerRepository();
     }

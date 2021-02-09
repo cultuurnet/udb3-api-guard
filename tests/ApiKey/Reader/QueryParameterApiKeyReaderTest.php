@@ -13,7 +13,7 @@ class QueryParameterApiKeyReaderTest extends TestCase
      */
     private $reader;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->reader = new QueryParameterApiKeyReader('apiKey');
     }

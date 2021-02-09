@@ -15,7 +15,7 @@ class ConsumerIsInPermissionGroupTest extends TestCase
      */
     private $specification;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->specification = new ConsumerIsInPermissionGroup(
             new StringLiteral(self::PERMISSION_GROUP_ID)
