@@ -11,7 +11,7 @@ class CompositeApiKeyReaderTest extends TestCase
     /**
      * @test
      */
-    public function it_should_traverse_the_injected_readers_until_one_returns_an_api_key_for_the_given_request()
+    public function it_should_traverse_the_injected_readers_until_one_returns_an_api_key_for_the_given_request(): void
     {
         $expectedApiKey = new ApiKey('8f244d08-36e6-49e5-a201-b8119408d2b7');
 
@@ -49,7 +49,7 @@ class CompositeApiKeyReaderTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_null_if_none_of_the_injected_readers_returns_an_api_key()
+    public function it_should_return_null_if_none_of_the_injected_readers_returns_an_api_key(): void
     {
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/');

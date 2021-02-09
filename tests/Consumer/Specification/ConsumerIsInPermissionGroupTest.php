@@ -25,7 +25,7 @@ class ConsumerIsInPermissionGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_should_be_satisfied_by_a_consumer_with_the_same_group_id_in_its_list_of_group_ids()
+    public function it_should_be_satisfied_by_a_consumer_with_the_same_group_id_in_its_list_of_group_ids(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = 'e1734ca6-0510-44de-9994-2f256de91b24';
@@ -43,7 +43,7 @@ class ConsumerIsInPermissionGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_should_be_satisfied_by_a_consumer_with_the_same_group_id_twice_in_its_list_of_group_ids()
+    public function it_should_be_satisfied_by_a_consumer_with_the_same_group_id_twice_in_its_list_of_group_ids(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = 'e1734ca6-0510-44de-9994-2f256de91b24';
@@ -62,7 +62,7 @@ class ConsumerIsInPermissionGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_should_not_be_satisfied_by_a_consumer_without_the_same_group_id_in_its_list_of_group_ids()
+    public function it_should_not_be_satisfied_by_a_consumer_without_the_same_group_id_in_its_list_of_group_ids(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = 'e1734ca6-0510-44de-9994-2f256de91b24';
@@ -79,7 +79,7 @@ class ConsumerIsInPermissionGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_should_not_be_satisfied_by_a_consumer_without_group_ids()
+    public function it_should_not_be_satisfied_by_a_consumer_without_group_ids(): void
     {
         $cfConsumer = new \CultureFeed_Consumer();
         $cfConsumer->apiKeySapi3 = 'e1734ca6-0510-44de-9994-2f256de91b24';

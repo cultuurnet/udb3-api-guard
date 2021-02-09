@@ -21,7 +21,7 @@ class QueryParameterApiKeyReaderTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_null_if_the_configured_query_parameter_is_not_set()
+    public function it_should_return_null_if_the_configured_query_parameter_is_not_set(): void
     {
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/');
@@ -31,7 +31,7 @@ class QueryParameterApiKeyReaderTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_null_if_the_configured_query_parameter_is_an_empty_string()
+    public function it_should_return_null_if_the_configured_query_parameter_is_an_empty_string(): void
     {
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/?apiKey=');
@@ -42,7 +42,7 @@ class QueryParameterApiKeyReaderTest extends TestCase
     /**
      * @test
      */
-    public function it_should_return_the_api_key_as_a_value_object_if_the_query_parameter_is_set_and_not_empty()
+    public function it_should_return_the_api_key_as_a_value_object_if_the_query_parameter_is_set_and_not_empty(): void
     {
         $expected = new ApiKey('4f3024ab-cfbb-40a0-848c-cb88ee999987');
 

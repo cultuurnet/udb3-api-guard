@@ -38,7 +38,7 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
     /**
      * @test
      */
-    public function it_should_authenticate_an_api_key_by_retrieving_and_caching_the_related_consumer()
+    public function it_should_authenticate_an_api_key_by_retrieving_and_caching_the_related_consumer(): void
     {
         $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
 
@@ -63,7 +63,7 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
     /**
      * @test
      */
-    public function it_should_throw_an_authentication_exception_if_no_related_consumer_could_be_found()
+    public function it_should_throw_an_authentication_exception_if_no_related_consumer_could_be_found(): void
     {
         $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
 
@@ -86,14 +86,12 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
     /**
      * @test
      * @dataProvider invalidStatusConsumers
-     * @param string $status
-     * @param string $message
      * @throws ApiKeyAuthenticationException
      */
     public function it_should_throw_an_authentication_exception_if_consumer_is_it_has_invalid_status(
         string $status,
         string $message
-    ) {
+    ): void {
 
         $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
 
