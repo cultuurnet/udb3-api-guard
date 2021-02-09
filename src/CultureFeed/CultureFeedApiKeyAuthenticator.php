@@ -42,10 +42,9 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     }
 
     /**
-     * @param ApiKey $apiKey
      * @throws ApiKeyAuthenticationException
      */
-    public function authenticate(ApiKey $apiKey)
+    public function authenticate(ApiKey $apiKey): void
     {
         try {
             $consumer = $this->cultureFeed->getServiceConsumerByApiKey(
