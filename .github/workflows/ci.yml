@@ -3,32 +3,66 @@ name: CI
 on: push
 
 jobs:
-    build:
-
+    tests:
         runs-on: ubuntu-latest
         strategy:
             matrix:
                 php-versions: ['7.1', '7.2', '7.3', '7.4']
         name: PHP ${{ matrix.php-versions }}
         steps:
-            - uses: actions/checkout@v2
+            - name: 📤 Checkout project
+              uses: actions/checkout@v2
 
-            - name: Install PHP
+            - name: 🐘 Install PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-versions }}
                   ini-values: xdebug.mode=coverage
                   extensions: intl
+                  tools: composer:v1
+
+            - name: 📦 Install dependencies
+              run: composer update
+
+            - name: ✅ Run tests
+              run: composer test
+
+    phpcs:
+        runs-on: ubuntu-latest
+        name: Code style
+        steps:
+            - name: 📤 Checkout project
+              uses: actions/checkout@v2
+
+            - name: 🐘 Install PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 7.1
+                  extensions: intl
                   tools: composer
 
-            - name: Check PHP Version
-              run: php -v
+            - name: 📦 Install dependencies
+              run: composer update
 
-            - name: Validate composer.json and composer.lock
-              run: composer validate
+            - name: ✨ Run code style check
+              run: composer phpcs
 
-            - name: Install dependencies
-              run: composer install --no-progress --no-suggest
+    phpstan:
+        runs-on: ubuntu-latest
+        name: Static analysis
+        steps:
+            - name: 📤 Checkout project
+              uses: actions/checkout@v2
 
-            - name: Run Phing
-              run: composer phing
+            - name: 🐘 Install PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 7.1
+                  extensions: intl
+                  tools: composer
+
+            - name: 📦 Install dependencies
+              run: composer update
+
+            - name: 🔍 Run static analysis
+              run: composer phpstan
