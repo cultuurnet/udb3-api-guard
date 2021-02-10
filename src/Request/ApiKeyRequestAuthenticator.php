@@ -31,6 +31,9 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
         $this->apiKeyAuthenticator = $apiKeyAuthenticator;
     }
 
+    /**
+     * @throws RequestAuthenticationException
+     */
     public function authenticate(ServerRequestInterface $request): void
     {
         $apiKey = $this->apiKeyReader->read($request);

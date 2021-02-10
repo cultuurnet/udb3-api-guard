@@ -12,12 +12,9 @@ class QueryParameterApiKeyReader implements ApiKeyReaderInterface
      */
     private $queryParameterName;
 
-    /**
-     * @param string $queryParameterName
-     */
-    public function __construct($queryParameterName)
+    public function __construct(string $queryParameterName)
     {
-        $this->queryParameterName = (string) $queryParameterName;
+        $this->queryParameterName = $queryParameterName;
     }
 
     public function read(ServerRequestInterface $request): ?ApiKey

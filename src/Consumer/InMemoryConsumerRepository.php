@@ -13,10 +13,7 @@ class InMemoryConsumerRepository implements
      */
     private $consumers = [];
 
-    /**
-     * @inheritdoc
-     */
-    public function getConsumer(ApiKey $apiKey)
+    public function getConsumer(ApiKey $apiKey): ?ConsumerInterface
     {
         $apiKey = $apiKey->toNative();
 
@@ -27,10 +24,7 @@ class InMemoryConsumerRepository implements
         }
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer)
+    public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer): void
     {
         $apiKey = $apiKey->toNative();
         $this->consumers[$apiKey] = $consumer;

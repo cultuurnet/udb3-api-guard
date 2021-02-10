@@ -27,8 +27,6 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     private $includePermissions;
 
     /**
-     * @param \ICultureFeed $cultureFeed
-     * @param ConsumerWriteRepositoryInterface $consumerWriteRepository
      *   CultureFeed returns a consumer detail while authenticating.
      *   This consumer will be written to the injected write repository as a
      *   form of caching.
@@ -36,7 +34,7 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     public function __construct(
         \ICultureFeed $cultureFeed,
         ConsumerWriteRepositoryInterface $consumerWriteRepository,
-        $includePermissions = false
+        bool $includePermissions = false
     ) {
         $this->cultureFeed = $cultureFeed;
         $this->consumerWriteRepository = $consumerWriteRepository;
@@ -44,10 +42,9 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
     }
 
     /**
-     * @param ApiKey $apiKey
      * @throws ApiKeyAuthenticationException
      */
-    public function authenticate(ApiKey $apiKey)
+    public function authenticate(ApiKey $apiKey): void
     {
         try {
             $consumer = $this->cultureFeed->getServiceConsumerByApiKey(
@@ -63,12 +60,7 @@ class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
         $this->consumerWriteRepository->setConsumer($apiKey, new CultureFeedConsumerAdapter($consumer));
     }
 
-    /**
-     * @param ApiKey $apiKey
-     * @param $consumer
-     * @throws ApiKeyAuthenticationException
-     */
-    public function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, $consumer): void
+    private function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, \CultureFeed_Consumer $consumer): void
     {
         if ($consumer->status === self::STATUS_BLOCKED) {
             throw ApiKeyAuthenticationException::forApiKey($apiKey, 'Key is blocked');
