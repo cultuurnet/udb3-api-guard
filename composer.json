@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "cultuurnet/valueobjects": "~3.0",
+    "cultuurnet/valueobjects": "^4.0",
     "psr/http-message": "^1.0"
   },
   "require-dev": {
