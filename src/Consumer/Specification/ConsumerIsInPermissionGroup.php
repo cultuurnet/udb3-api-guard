@@ -7,7 +7,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
 use ValueObjects\StringLiteral\StringLiteral;
 
-class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
+final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
 {
     /**
      * @var StringLiteral

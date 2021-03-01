@@ -8,7 +8,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
 use ValueObjects\StringLiteral\StringLiteral;
 
-class CultureFeedConsumerAdapter implements ConsumerInterface
+final class CultureFeedConsumerAdapter implements ConsumerInterface
 {
     /**
      * @var \CultureFeed_Consumer

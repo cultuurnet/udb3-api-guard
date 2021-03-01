@@ -9,7 +9,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\Consumer\InMemoryConsumerRepository;
 use PHPUnit\Framework\TestCase;
 
-class CultureFeedApiKeyAuthenticatorTest extends TestCase
+final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 {
     /**
      * @var \ICultureFeed|\PHPUnit_Framework_MockObject_MockObject

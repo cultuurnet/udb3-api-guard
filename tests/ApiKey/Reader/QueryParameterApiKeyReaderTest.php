@@ -8,7 +8,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
-class QueryParameterApiKeyReaderTest extends TestCase
+final class QueryParameterApiKeyReaderTest extends TestCase
 {
     /**
      * @var QueryParameterApiKeyReader

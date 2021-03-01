@@ -6,7 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 
-class InMemoryConsumerRepository implements
+final class InMemoryConsumerRepository implements
     ConsumerReadRepositoryInterface,
     ConsumerWriteRepositoryInterface
 {

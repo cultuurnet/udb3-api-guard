@@ -8,7 +8,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use PHPUnit\Framework\TestCase;
 use ValueObjects\StringLiteral\StringLiteral;
 
-class CultureFeedConsumerAdapterTest extends TestCase
+final class CultureFeedConsumerAdapterTest extends TestCase
 {
     /**
      * @test

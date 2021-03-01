@@ -8,7 +8,7 @@ use CultuurNet\UDB3\ApiGuard\CultureFeed\CultureFeedConsumerAdapter;
 use PHPUnit\Framework\TestCase;
 use ValueObjects\StringLiteral\StringLiteral;
 
-class ConsumerIsInPermissionGroupTest extends TestCase
+final class ConsumerIsInPermissionGroupTest extends TestCase
 {
     private const PERMISSION_GROUP_ID = 'c91f1278-3cbe-4384-ada8-aa571d31fa95';
 

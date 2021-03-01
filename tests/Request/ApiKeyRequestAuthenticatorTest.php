@@ -11,7 +11,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\QueryParameterApiKeyReader;
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
-class ApiKeyRequestAuthenticatorTest extends TestCase
+final class ApiKeyRequestAuthenticatorTest extends TestCase
 {
     /**
      * @var QueryParameterApiKeyReader

@@ -12,7 +12,7 @@ use Slim\Psr7\Factory\UriFactory;
 use Slim\Psr7\Headers;
 use Slim\Psr7\Request;
 
-class CustomHeaderApiKeyReaderTest extends TestCase
+final class CustomHeaderApiKeyReaderTest extends TestCase
 {
     /**
      * @var CustomHeaderApiKeyReader

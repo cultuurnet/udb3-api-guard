@@ -7,7 +7,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use PHPUnit\Framework\TestCase;
 
-class InMemoryConsumerRepositoryTest extends TestCase
+final class InMemoryConsumerRepositoryTest extends TestCase
 {
     /**
      * @var InMemoryConsumerRepository

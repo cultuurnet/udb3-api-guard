@@ -7,7 +7,7 @@ namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use Psr\Http\Message\ServerRequestInterface;
 
-class CompositeApiKeyReader implements ApiKeyReaderInterface
+final class CompositeApiKeyReader implements ApiKeyReaderInterface
 {
     /**
      * @var ApiKeyReaderInterface[]

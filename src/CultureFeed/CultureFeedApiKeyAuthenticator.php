@@ -9,7 +9,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerWriteRepositoryInterface;
 
-class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
+final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
 {
     const STATUS_BLOCKED = 'BLOCKED';
     const STATUS_REMOVED = 'REMOVED';

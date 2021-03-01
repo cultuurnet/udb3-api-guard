@@ -8,7 +8,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
-class CompositeApiKeyReaderTest extends TestCase
+final class CompositeApiKeyReaderTest extends TestCase
 {
     /**
      * @test
