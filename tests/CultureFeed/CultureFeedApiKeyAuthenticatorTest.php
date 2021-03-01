@@ -119,12 +119,12 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
         return [
             [
                 CultureFeedApiKeyAuthenticator::STATUS_BLOCKED,
-                'Key is blocked'
+                'Key is blocked',
             ],
             [
                 CultureFeedApiKeyAuthenticator::STATUS_REMOVED,
-                'Key is removed'
-            ]
+                'Key is removed',
+            ],
         ];
     }
 }
