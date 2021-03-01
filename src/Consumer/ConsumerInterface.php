@@ -15,5 +15,5 @@ interface ConsumerInterface
 
     public function getPermissionGroupIds(): array;
 
-    public function getName() : ?string;
+    public function getName(): ?string;
 }

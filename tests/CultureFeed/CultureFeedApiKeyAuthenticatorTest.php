@@ -94,7 +94,6 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
         string $status,
         string $message
     ): void {
-
         $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
 
         $expectedCfConsumer = new \CultureFeed_Consumer();
