@@ -11,8 +11,8 @@ use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerWriteRepositoryInterface;
 
 final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
 {
-    const STATUS_BLOCKED = 'BLOCKED';
-    const STATUS_REMOVED = 'REMOVED';
+    public const STATUS_BLOCKED = 'BLOCKED';
+    public const STATUS_REMOVED = 'REMOVED';
     /**
      * @var \ICultureFeed
      */
