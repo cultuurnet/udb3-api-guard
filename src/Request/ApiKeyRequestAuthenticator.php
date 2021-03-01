@@ -21,10 +21,7 @@ final class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
      */
     private $apiKeyAuthenticator;
 
-    /**
-     * @param ApiKeyReaderInterface $apiKeyReader
-     * @param ApiKeyAuthenticatorInterface $apiKeyAuthenticator
-     */
+
     public function __construct(
         ApiKeyReaderInterface $apiKeyReader,
         ApiKeyAuthenticatorInterface $apiKeyAuthenticator
