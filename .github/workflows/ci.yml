@@ -27,7 +27,7 @@ jobs:
             - name: ✅ Run tests
               run: composer test
 
-    phpcs:
+    cs:
         runs-on: ubuntu-latest
         name: Code style
         steps:
@@ -45,7 +45,7 @@ jobs:
               run: composer update
 
             - name: ✨ Run code style check
-              run: composer phpcs
+              run: composer cs
 
     phpstan:
         runs-on: ubuntu-latest

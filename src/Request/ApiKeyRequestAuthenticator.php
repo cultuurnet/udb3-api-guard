@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CultuurNet\UDB3\ApiGuard\Request;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
@@ -7,7 +9,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
 use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\ApiKeyReaderInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
+final class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
 {
     /**
      * @var ApiKeyReaderInterface
@@ -19,10 +21,7 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
      */
     private $apiKeyAuthenticator;
 
-    /**
-     * @param ApiKeyReaderInterface $apiKeyReader
-     * @param ApiKeyAuthenticatorInterface $apiKeyAuthenticator
-     */
+
     public function __construct(
         ApiKeyReaderInterface $apiKeyReader,
         ApiKeyAuthenticatorInterface $apiKeyAuthenticator

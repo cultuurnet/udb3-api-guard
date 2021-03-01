@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
@@ -10,7 +12,7 @@ use Slim\Psr7\Factory\UriFactory;
 use Slim\Psr7\Headers;
 use Slim\Psr7\Request;
 
-class CustomHeaderApiKeyReaderTest extends TestCase
+final class CustomHeaderApiKeyReaderTest extends TestCase
 {
     /**
      * @var CustomHeaderApiKeyReader

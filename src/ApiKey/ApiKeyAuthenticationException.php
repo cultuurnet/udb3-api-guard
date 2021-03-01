@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CultuurNet\UDB3\ApiGuard\ApiKey;
 
-class ApiKeyAuthenticationException extends \Exception
+final class ApiKeyAuthenticationException extends \Exception
 {
     public static function forApiKey(ApiKey $apiKey, string $additionalMessage = null): ApiKeyAuthenticationException
     {

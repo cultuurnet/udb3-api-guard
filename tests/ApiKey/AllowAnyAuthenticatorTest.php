@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CultuurNet\UDB3\ApiGuard\ApiKey;
 
 use PHPUnit\Framework\TestCase;
 
-class AllowAnyAuthenticatorTest extends TestCase
+final class AllowAnyAuthenticatorTest extends TestCase
 {
     /**
      * @test

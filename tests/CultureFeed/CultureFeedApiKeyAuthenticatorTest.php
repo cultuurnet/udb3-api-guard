@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
@@ -7,7 +9,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\Consumer\InMemoryConsumerRepository;
 use PHPUnit\Framework\TestCase;
 
-class CultureFeedApiKeyAuthenticatorTest extends TestCase
+final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 {
     /**
      * @var \ICultureFeed|\PHPUnit_Framework_MockObject_MockObject
@@ -92,7 +94,6 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
         string $status,
         string $message
     ): void {
-
         $apiKey = new ApiKey('aeef4df2-07bc-4edb-a705-84acd7e700c8');
 
         $expectedCfConsumer = new \CultureFeed_Consumer();
@@ -118,12 +119,12 @@ class CultureFeedApiKeyAuthenticatorTest extends TestCase
         return [
             [
                 CultureFeedApiKeyAuthenticator::STATUS_BLOCKED,
-                'Key is blocked'
+                'Key is blocked',
             ],
             [
                 CultureFeedApiKeyAuthenticator::STATUS_REMOVED,
-                'Key is removed'
-            ]
+                'Key is removed',
+            ],
         ];
     }
 }

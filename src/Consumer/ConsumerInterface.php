@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CultuurNet\UDB3\ApiGuard\Consumer;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
@@ -13,5 +15,5 @@ interface ConsumerInterface
 
     public function getPermissionGroupIds(): array;
 
-    public function getName() : ?string;
+    public function getName(): ?string;
 }
