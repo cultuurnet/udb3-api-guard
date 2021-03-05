@@ -4,9 +4,8 @@ namespace CultuurNet\UDB3\ApiGuard\ValueObjects;
 
 use ValueObjects\Exception\InvalidNativeArgumentException;
 use ValueObjects\Util\Util;
-use ValueObjects\ValueObjectInterface;
 
-class StringLiteral implements ValueObjectInterface
+class StringLiteral
 {
     protected $value;
 
