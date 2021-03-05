@@ -2,7 +2,7 @@
 
 namespace CultuurNet\UDB3\ApiGuard\ValueObjects;
 
-use ValueObjects\Exception\InvalidNativeArgumentException;
+use InvalidArgumentException;
 use ValueObjects\Util\Util;
 
 class StringLiteral
@@ -30,7 +30,7 @@ class StringLiteral
     public function __construct($value)
     {
         if (false === \is_string($value)) {
-            throw new InvalidNativeArgumentException($value, array('string'));
+            throw new InvalidArgumentException($value, array('string'));
         }
 
         $this->value = $value;
