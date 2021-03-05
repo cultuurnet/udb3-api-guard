@@ -20,15 +20,9 @@ final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterfac
 
     public function satisfiedBy(ConsumerInterface $consumer): bool
     {
-        $groupIds = $consumer->getPermissionGroupIds();
-
-        $matching = array_filter(
-            $groupIds,
-            function (string $groupId) {
-                return $groupId === $this->groupId;
-            }
+        return in_array(
+            $this->groupId,
+            $consumer->getPermissionGroupIds()
         );
-
-        return count($matching) > 0;
     }
 }
