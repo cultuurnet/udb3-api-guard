@@ -16,7 +16,7 @@ final class ApiKey
         $this->value = $value;
     }
 
-    public function getValue(): string
+    public function toString(): string
     {
         return $this->value;
     }
