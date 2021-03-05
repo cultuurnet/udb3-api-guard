@@ -6,7 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 
 use CultuurNet\UDB3\ApiGuard\CultureFeed\CultureFeedConsumerAdapter;
 use PHPUnit\Framework\TestCase;
-use ValueObjects\StringLiteral\StringLiteral;
+use CultuurNet\UDB3\ApiGuard\ValueObjects\StringLiteral;
 
 final class ConsumerIsInPermissionGroupTest extends TestCase
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
-use ValueObjects\StringLiteral\StringLiteral;
+use CultuurNet\UDB3\ApiGuard\ValueObjects\StringLiteral;
 
 final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
 {
