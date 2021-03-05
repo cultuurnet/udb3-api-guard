@@ -51,16 +51,6 @@ class StringLiteral
     }
 
     /**
-     * Tells whether the StringLiteral is empty
-     *
-     * @return bool
-     */
-    public function isEmpty()
-    {
-        return \strlen($this->toNative()) == 0;
-    }
-
-    /**
      * Returns the string value itself
      *
      * @return string
