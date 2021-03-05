@@ -9,7 +9,7 @@ final class ApiKey
     /**
      * @var string
      */
-    protected $value;
+    private $value;
 
     public function __construct(string $value)
     {
