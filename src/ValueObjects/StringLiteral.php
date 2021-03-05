@@ -2,45 +2,21 @@
 
 namespace CultuurNet\UDB3\ApiGuard\ValueObjects;
 
-use InvalidArgumentException;
-
 class StringLiteral
 {
     protected $value;
 
-    /**
-     * Returns a StringLiteral object given a PHP native string as parameter.
-     *
-     * @param  string $value
-     * @return StringLiteral
-     */
-    public static function fromNative()
+    public static function fromNative(string $value): self
     {
-        $value = func_get_arg(0);
-
         return new static($value);
     }
 
-    /**
-     * Returns a StringLiteral object given a PHP native string as parameter.
-     *
-     * @param string $value
-     */
-    public function __construct($value)
+    public function __construct(string $value)
     {
-        if (false === \is_string($value)) {
-            throw new InvalidArgumentException($value, array('string'));
-        }
-
         $this->value = $value;
     }
 
-    /**
-     * Returns the value of the string
-     *
-     * @return string
-     */
-    public function toNative()
+    public function toNative(): string
     {
         return $this->value;
     }
@@ -50,12 +26,7 @@ class StringLiteral
         return $this->toNative() === $stringLiteral->toNative();
     }
 
-    /**
-     * Returns the string value itself
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toNative();
     }
