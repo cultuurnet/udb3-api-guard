@@ -8,11 +8,6 @@ class StringLiteral
 {
     protected $value;
 
-    public static function fromNative(string $value): self
-    {
-        return new static($value);
-    }
-
     public function __construct(string $value)
     {
         $this->value = $value;
@@ -21,11 +16,6 @@ class StringLiteral
     public function toNative(): string
     {
         return $this->value;
-    }
-
-    public function sameValueAs(StringLiteral $stringLiteral): bool
-    {
-        return $this->toNative() === $stringLiteral->toNative();
     }
 
     public function __toString(): string
