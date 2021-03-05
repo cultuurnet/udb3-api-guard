@@ -5,31 +5,24 @@ declare(strict_types=1);
 namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
-use ValueObjects\StringLiteral\StringLiteral;
 
 final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
 {
     /**
-     * @var StringLiteral
+     * @var string
      */
     private $groupId;
 
-    public function __construct(StringLiteral $groupId)
+    public function __construct(string $groupId)
     {
         $this->groupId = $groupId;
     }
 
     public function satisfiedBy(ConsumerInterface $consumer): bool
     {
-        $groupIds = $consumer->getPermissionGroupIds();
-
-        $matching = array_filter(
-            $groupIds,
-            function (StringLiteral $groupId) {
-                return $groupId->sameValueAs($this->groupId);
-            }
+        return in_array(
+            $this->groupId,
+            $consumer->getPermissionGroupIds()
         );
-
-        return count($matching) > 0;
     }
 }

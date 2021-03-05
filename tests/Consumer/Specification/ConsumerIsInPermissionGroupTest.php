@@ -6,7 +6,6 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 
 use CultuurNet\UDB3\ApiGuard\CultureFeed\CultureFeedConsumerAdapter;
 use PHPUnit\Framework\TestCase;
-use ValueObjects\StringLiteral\StringLiteral;
 
 final class ConsumerIsInPermissionGroupTest extends TestCase
 {
@@ -19,9 +18,7 @@ final class ConsumerIsInPermissionGroupTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->specification = new ConsumerIsInPermissionGroup(
-            new StringLiteral(self::PERMISSION_GROUP_ID)
-        );
+        $this->specification = new ConsumerIsInPermissionGroup(self::PERMISSION_GROUP_ID);
     }
 
     /**

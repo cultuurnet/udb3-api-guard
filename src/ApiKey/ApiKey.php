@@ -4,8 +4,20 @@ declare(strict_types=1);
 
 namespace CultuurNet\UDB3\ApiGuard\ApiKey;
 
-use ValueObjects\StringLiteral\StringLiteral;
-
-final class ApiKey extends StringLiteral
+final class ApiKey
 {
+    /**
+     * @var string
+     */
+    private $value;
+
+    public function __construct(string $value)
+    {
+        $this->value = $value;
+    }
+
+    public function toString(): string
+    {
+        return $this->value;
+    }
 }

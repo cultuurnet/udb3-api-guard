@@ -50,7 +50,7 @@ final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterfa
     {
         try {
             $consumer = $this->cultureFeed->getServiceConsumerByApiKey(
-                $apiKey->toNative(),
+                $apiKey->toString(),
                 $this->includePermissions
             );
         } catch (\Exception $e) {
