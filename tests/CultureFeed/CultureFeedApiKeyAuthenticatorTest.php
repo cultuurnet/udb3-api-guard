@@ -52,7 +52,7 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 
         $this->cultureFeed->expects($this->once())
             ->method('getServiceConsumerByApiKey')
-            ->with($apiKey->toNative())
+            ->with($apiKey->getValue())
             ->willReturn($expectedCfConsumer);
 
         $this->authenticator->authenticate($apiKey);
@@ -71,7 +71,7 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 
         $this->cultureFeed->expects($this->once())
             ->method('getServiceConsumerByApiKey')
-            ->with($apiKey->toNative())
+            ->with($apiKey->getValue())
             ->willThrowException(
                 new \CultureFeed_HttpException(
                     '<error>service consumer not found</error>',
@@ -103,7 +103,7 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 
         $this->cultureFeed->expects($this->once())
             ->method('getServiceConsumerByApiKey')
-            ->with($apiKey->toNative())
+            ->with($apiKey->getValue())
             ->willReturn($expectedCfConsumer);
 
         $this->expectException(ApiKeyAuthenticationException::class);

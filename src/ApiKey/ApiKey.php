@@ -16,7 +16,7 @@ final class ApiKey
         $this->value = $value;
     }
 
-    public function toNative(): string
+    public function getValue(): string
     {
         return $this->value;
     }

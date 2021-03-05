@@ -17,7 +17,7 @@ final class InMemoryConsumerRepository implements
 
     public function getConsumer(ApiKey $apiKey): ?ConsumerInterface
     {
-        $apiKey = $apiKey->toNative();
+        $apiKey = $apiKey->getValue();
 
         if (isset($this->consumers[$apiKey])) {
             return $this->consumers[$apiKey];
@@ -28,7 +28,7 @@ final class InMemoryConsumerRepository implements
 
     public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer): void
     {
-        $apiKey = $apiKey->toNative();
+        $apiKey = $apiKey->getValue();
         $this->consumers[$apiKey] = $consumer;
     }
 }
