@@ -3,7 +3,6 @@
 namespace CultuurNet\UDB3\ApiGuard\ValueObjects;
 
 use InvalidArgumentException;
-use ValueObjects\Util\Util;
 
 class StringLiteral
 {
@@ -46,18 +45,8 @@ class StringLiteral
         return $this->value;
     }
 
-    /**
-     * Tells whether two string literals are equal by comparing their values
-     *
-     * @param  ValueObjectInterface $stringLiteral
-     * @return bool
-     */
-    public function sameValueAs(ValueObjectInterface $stringLiteral)
+    public function sameValueAs(StringLiteral $stringLiteral): bool
     {
-        if (false === Util::classEquals($this, $stringLiteral)) {
-            return false;
-        }
-
         return $this->toNative() === $stringLiteral->toNative();
     }
 
