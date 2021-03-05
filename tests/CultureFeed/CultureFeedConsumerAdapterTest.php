@@ -6,7 +6,6 @@ namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use PHPUnit\Framework\TestCase;
-use CultuurNet\UDB3\ApiGuard\ValueObjects\StringLiteral;
 
 final class CultureFeedConsumerAdapterTest extends TestCase
 {
@@ -23,7 +22,7 @@ final class CultureFeedConsumerAdapterTest extends TestCase
         $adapter = new CultureFeedConsumerAdapter($cfConsumer);
 
         $expectedApiKey = new ApiKey('712a7071-e251-489d-8a73-46346078a072');
-        $expectedQuery = new StringLiteral('labels:foo AND regions:gem-leuven');
+        $expectedQuery = 'labels:foo AND regions:gem-leuven';
 
         $this->assertEquals($expectedApiKey, $adapter->getApiKey());
         $this->assertEquals($expectedQuery, $adapter->getDefaultQuery());
@@ -66,8 +65,8 @@ final class CultureFeedConsumerAdapterTest extends TestCase
         $cfConsumer->group = ['103fc3b3-7f20-4802-9e3a-3b540c8afaaa', '7538c603-0383-4842-bd96-c2cdab90333b'];
 
         $expected = [
-            new StringLiteral('103fc3b3-7f20-4802-9e3a-3b540c8afaaa'),
-            new StringLiteral('7538c603-0383-4842-bd96-c2cdab90333b'),
+            '103fc3b3-7f20-4802-9e3a-3b540c8afaaa',
+            '7538c603-0383-4842-bd96-c2cdab90333b',
         ];
 
         $adapter = new CultureFeedConsumerAdapter($cfConsumer);

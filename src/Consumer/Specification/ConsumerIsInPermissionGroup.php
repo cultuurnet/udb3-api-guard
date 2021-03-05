@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
-use CultuurNet\UDB3\ApiGuard\ValueObjects\StringLiteral;
 
 final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
 {
     /**
-     * @var StringLiteral
+     * @var string
      */
     private $groupId;
 
-    public function __construct(StringLiteral $groupId)
+    public function __construct(string $groupId)
     {
         $this->groupId = $groupId;
     }
@@ -25,8 +24,8 @@ final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterfac
 
         $matching = array_filter(
             $groupIds,
-            function (StringLiteral $groupId) {
-                return $groupId->sameValueAs($this->groupId);
+            function (string $groupId) {
+                return $groupId === $this->groupId;
             }
         );
 

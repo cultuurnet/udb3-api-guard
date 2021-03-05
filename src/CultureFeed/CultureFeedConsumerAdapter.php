@@ -6,7 +6,6 @@ namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
-use CultuurNet\UDB3\ApiGuard\ValueObjects\StringLiteral;
 
 final class CultureFeedConsumerAdapter implements ConsumerInterface
 {
@@ -29,17 +28,17 @@ final class CultureFeedConsumerAdapter implements ConsumerInterface
         return new ApiKey($this->cfConsumer->apiKeySapi3);
     }
 
-    public function getDefaultQuery(): ?StringLiteral
+    public function getDefaultQuery(): ?string
     {
         if ($this->cfConsumer->searchPrefixSapi3) {
-            return new StringLiteral($this->cfConsumer->searchPrefixSapi3);
+            return $this->cfConsumer->searchPrefixSapi3;
         } else {
             return null;
         }
     }
 
     /**
-     * @return StringLiteral[]
+     * @return string[]
      */
     public function getPermissionGroupIds(): array
     {
@@ -47,7 +46,7 @@ final class CultureFeedConsumerAdapter implements ConsumerInterface
 
         return array_map(
             function ($groupId) {
-                return new StringLiteral((string) $groupId);
+                return (string) $groupId;
             },
             $groupIds
         );
