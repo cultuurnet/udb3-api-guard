@@ -7,7 +7,7 @@ namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class QueryParameterApiKeyReader implements ApiKeyReaderInterface
+final class QueryParameterApiKeyReader implements ApiKeyReader
 {
     /**
      * @var string

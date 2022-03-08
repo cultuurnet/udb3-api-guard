@@ -34,7 +34,7 @@ final class InMemoryConsumerRepositoryTest extends TestCase
     public function it_should_return_the_associated_consumer_of_a_previously_set_api_key(): void
     {
         $apiKey = new ApiKey('7fdd7d7f-4ce2-44e7-8615-e04ff0fb8624');
-        $consumer = $this->createMock(ConsumerInterface::class);
+        $consumer = $this->createMock(Consumer::class);
 
         $this->repository->setConsumer($apiKey, $consumer);
 
@@ -48,8 +48,8 @@ final class InMemoryConsumerRepositoryTest extends TestCase
     {
         $apiKey = new ApiKey('7fdd7d7f-4ce2-44e7-8615-e04ff0fb8624');
 
-        $fallbackRepository = $this->createMock(ConsumerReadRepositoryInterface::class);
-        $fallbackConsumer = $this->createMock(ConsumerInterface::class);
+        $fallbackRepository = $this->createMock(ConsumerReadRepository::class);
+        $fallbackConsumer = $this->createMock(Consumer::class);
 
         $fallbackRepository->expects($this->once())
             ->method('getConsumer')
@@ -68,7 +68,7 @@ final class InMemoryConsumerRepositoryTest extends TestCase
     {
         $apiKey = new ApiKey('7fdd7d7f-4ce2-44e7-8615-e04ff0fb8624');
 
-        $fallbackRepository = $this->createMock(ConsumerReadRepositoryInterface::class);
+        $fallbackRepository = $this->createMock(ConsumerReadRepository::class);
 
         $fallbackRepository->expects($this->once())
             ->method('getConsumer')

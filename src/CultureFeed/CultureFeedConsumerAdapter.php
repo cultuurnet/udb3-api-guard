@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
+use CultuurNet\UDB3\ApiGuard\Consumer\Consumer;
 
-final class CultureFeedConsumerAdapter implements ConsumerInterface
+final class CultureFeedConsumerAdapter implements Consumer
 {
     /**
      * @var \CultureFeed_Consumer

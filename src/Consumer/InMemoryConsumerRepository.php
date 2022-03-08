@@ -7,22 +7,22 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 
 final class InMemoryConsumerRepository implements
-    ConsumerReadRepositoryInterface,
-    ConsumerWriteRepositoryInterface
+    ConsumerReadRepository,
+    ConsumerWriteRepository
 {
     /**
-     * @var ConsumerInterface[]
+     * @var Consumer[]
      */
     private array $consumers = [];
 
-    private ?ConsumerReadRepositoryInterface $fallbackReadRepository;
+    private ?ConsumerReadRepository $fallbackReadRepository;
 
-    public function __construct(?ConsumerReadRepositoryInterface $fallbackReadRepository = null)
+    public function __construct(?ConsumerReadRepository $fallbackReadRepository = null)
     {
         $this->fallbackReadRepository = $fallbackReadRepository;
     }
 
-    public function getConsumer(ApiKey $apiKey): ?ConsumerInterface
+    public function getConsumer(ApiKey $apiKey): ?Consumer
     {
         if (isset($this->consumers[$apiKey->toString()])) {
             return $this->consumers[$apiKey->toString()];
@@ -41,7 +41,7 @@ final class InMemoryConsumerRepository implements
         return $fallback;
     }
 
-    public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer): void
+    public function setConsumer(ApiKey $apiKey, Consumer $consumer): void
     {
         $this->consumers[$apiKey->toString()] = $consumer;
     }

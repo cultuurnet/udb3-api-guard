@@ -8,7 +8,7 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\CultureFeed\CultureFeedConsumerAdapter;
 use ICultureFeed;
 
-final class CultureFeedConsumerReadRepository implements ConsumerReadRepositoryInterface
+final class CultureFeedConsumerReadRepository implements ConsumerReadRepository
 {
     private ICultureFeed $cultureFeed;
     private bool $includePermissions;
@@ -21,7 +21,7 @@ final class CultureFeedConsumerReadRepository implements ConsumerReadRepositoryI
         $this->includePermissions = $includePermissions;
     }
 
-    public function getConsumer(ApiKey $apiKey): ?ConsumerInterface
+    public function getConsumer(ApiKey $apiKey): ?Consumer
     {
         try {
             $consumer = $this->cultureFeed->getServiceConsumerByApiKey(

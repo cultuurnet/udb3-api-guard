@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CultuurNet\UDB3\ApiGuard\Consumer\Specification;
 
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
+use CultuurNet\UDB3\ApiGuard\Consumer\Consumer;
 
-final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterface
+final class ConsumerIsInPermissionGroup implements ConsumerSpecification
 {
     /**
      * @var string
@@ -18,7 +18,7 @@ final class ConsumerIsInPermissionGroup implements ConsumerSpecificationInterfac
         $this->groupId = $groupId;
     }
 
-    public function satisfiedBy(ConsumerInterface $consumer): bool
+    public function satisfiedBy(Consumer $consumer): bool
     {
         return in_array(
             $this->groupId,

@@ -6,7 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\Request;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
-use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
+use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticator;
 use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\QueryParameterApiKeyReader;
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
@@ -19,7 +19,7 @@ final class ApiKeyRequestAuthenticatorTest extends TestCase
     private $apiKeyReader;
 
     /**
-     * @var ApiKeyAuthenticatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ApiKeyAuthenticator|\PHPUnit_Framework_MockObject_MockObject
      */
     private $apiKeyAuthenticator;
 
@@ -31,7 +31,7 @@ final class ApiKeyRequestAuthenticatorTest extends TestCase
     protected function setUp(): void
     {
         $this->apiKeyReader = new QueryParameterApiKeyReader('apiKey');
-        $this->apiKeyAuthenticator = $this->createMock(ApiKeyAuthenticatorInterface::class);
+        $this->apiKeyAuthenticator = $this->createMock(ApiKeyAuthenticator::class);
 
         $this->requestAuthenticator = new ApiKeyRequestAuthenticator(
             $this->apiKeyReader,

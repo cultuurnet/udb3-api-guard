@@ -6,15 +6,15 @@ namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
-use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerReadRepositoryInterface;
+use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticator;
+use CultuurNet\UDB3\ApiGuard\Consumer\Consumer;
+use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerReadRepository;
 
-final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
+final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticator
 {
-    private ConsumerReadRepositoryInterface $consumerReadRepository;
+    private ConsumerReadRepository $consumerReadRepository;
 
-    public function __construct(ConsumerReadRepositoryInterface $consumerReadRepository)
+    public function __construct(ConsumerReadRepository $consumerReadRepository)
     {
         $this->consumerReadRepository = $consumerReadRepository;
     }
@@ -32,7 +32,7 @@ final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterfa
         $this->guardAgainstInvalidConsumerStatus($consumer);
     }
 
-    private function guardAgainstInvalidConsumerStatus(ConsumerInterface $consumer): void
+    private function guardAgainstInvalidConsumerStatus(Consumer $consumer): void
     {
         if ($consumer->isBlocked()) {
             throw ApiKeyAuthenticationException::forApiKey($consumer->getApiKey(), 'Key is blocked');

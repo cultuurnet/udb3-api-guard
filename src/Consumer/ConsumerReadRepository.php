@@ -6,7 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 
-interface ConsumerWriteRepositoryInterface
+interface ConsumerReadRepository
 {
-    public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer): void;
+    public function getConsumer(ApiKey $apiKey): ?Consumer;
 }

@@ -6,14 +6,14 @@ namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerReadRepositoryInterface;
+use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerReadRepository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 {
     /**
-     * @var ConsumerReadRepositoryInterface|MockObject
+     * @var ConsumerReadRepository|MockObject
      */
     private MockObject $consumerReadRepository;
 
@@ -24,7 +24,7 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->consumerReadRepository = $this->createMock(ConsumerReadRepositoryInterface::class);
+        $this->consumerReadRepository = $this->createMock(ConsumerReadRepository::class);
         $this->authenticator = new CultureFeedApiKeyAuthenticator($this->consumerReadRepository);
     }
 

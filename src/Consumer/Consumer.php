@@ -6,7 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 
-interface ConsumerInterface
+interface Consumer
 {
     public function getApiKey(): ApiKey;
 
