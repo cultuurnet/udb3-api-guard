@@ -27,6 +27,8 @@ final class CultureFeedConsumerAdapterTest extends TestCase
         $this->assertEquals($expectedApiKey, $adapter->getApiKey());
         $this->assertEquals($expectedQuery, $adapter->getDefaultQuery());
         $this->assertEquals('name', $adapter->getName());
+        $this->assertEquals(false, $adapter->isBlocked());
+        $this->assertEquals(false, $adapter->isRemoved());
     }
 
     /**
@@ -90,5 +92,33 @@ final class CultureFeedConsumerAdapterTest extends TestCase
         $actual = $adapter->getPermissionGroupIds();
 
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_be_blocked_if_the_culturefeed_status_is_BLOCKED(): void
+    {
+        $cfConsumer = new \CultureFeed_Consumer();
+        $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
+        $cfConsumer->status = 'BLOCKED';
+
+        $adapter = new CultureFeedConsumerAdapter($cfConsumer);
+
+        $this->assertTrue($adapter->isBlocked());
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_be_removed_if_the_culturefeed_status_is_REMOVED(): void
+    {
+        $cfConsumer = new \CultureFeed_Consumer();
+        $cfConsumer->apiKeySapi3 = '712a7071-e251-489d-8a73-46346078a072';
+        $cfConsumer->status = 'REMOVED';
+
+        $adapter = new CultureFeedConsumerAdapter($cfConsumer);
+
+        $this->assertTrue($adapter->isRemoved());
     }
 }

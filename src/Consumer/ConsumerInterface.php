@@ -15,4 +15,7 @@ interface ConsumerInterface
     public function getPermissionGroupIds(): array;
 
     public function getName(): ?string;
+
+    public function isBlocked(): bool;
+    public function isRemoved(): bool;
 }

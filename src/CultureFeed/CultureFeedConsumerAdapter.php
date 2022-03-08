@@ -56,4 +56,14 @@ final class CultureFeedConsumerAdapter implements ConsumerInterface
     {
         return  $this->cfConsumer->name;
     }
+
+    public function isBlocked(): bool
+    {
+        return isset($this->cfConsumer->status) && $this->cfConsumer->status === 'BLOCKED';
+    }
+
+    public function isRemoved(): bool
+    {
+        return isset($this->cfConsumer->status) && $this->cfConsumer->status === 'REMOVED';
+    }
 }
