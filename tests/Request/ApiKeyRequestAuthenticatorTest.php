@@ -16,9 +16,6 @@ final class ApiKeyRequestAuthenticatorTest extends TestCase
 {
     private QueryParameterApiKeyReader $apiKeyReader;
 
-    /**
-     * @var ApiKeyAuthenticator|MockObject
-     */
     private MockObject $apiKeyAuthenticator;
 
     private ApiKeyRequestAuthenticator $requestAuthenticator;

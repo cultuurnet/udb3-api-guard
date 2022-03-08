@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class CultureFeedConsumerReadRepositoryTest extends TestCase
 {
-    /** @var ICultureFeed|MockObject */
     private MockObject $cultureFeed;
     private CultureFeedConsumerReadRepository $cultureFeedConsumerReadRepository;
 

@@ -12,9 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 final class CultureFeedApiKeyAuthenticatorTest extends TestCase
 {
-    /**
-     * @var ConsumerReadRepository|MockObject
-     */
     private MockObject $consumerReadRepository;
     private CultureFeedApiKeyAuthenticator $authenticator;
 
