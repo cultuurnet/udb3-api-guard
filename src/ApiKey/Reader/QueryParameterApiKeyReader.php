@@ -9,10 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class QueryParameterApiKeyReader implements ApiKeyReader
 {
-    /**
-     * @var string
-     */
-    private $queryParameterName;
+    private string $queryParameterName;
 
     public function __construct(string $queryParameterName)
     {

@@ -11,10 +11,7 @@ final class ConsumerIsInPermissionGroupTest extends TestCase
 {
     private const PERMISSION_GROUP_ID = 'c91f1278-3cbe-4384-ada8-aa571d31fa95';
 
-    /**
-     * @var ConsumerIsInPermissionGroup
-     */
-    private $specification;
+    private ConsumerIsInPermissionGroup $specification;
 
     protected function setUp(): void
     {

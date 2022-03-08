@@ -12,7 +12,7 @@ final class CompositeApiKeyReader implements ApiKeyReader
     /**
      * @var ApiKeyReader[]
      */
-    private $apiKeyReaders;
+    private array $apiKeyReaders;
 
     public function __construct(ApiKeyReader ...$apiKeyReaders)
     {

@@ -11,15 +11,8 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class ApiKeyRequestAuthenticator implements RequestAuthenticator
 {
-    /**
-     * @var ApiKeyReader
-     */
-    private $apiKeyReader;
-
-    /**
-     * @var ApiKeyAuthenticator
-     */
-    private $apiKeyAuthenticator;
+    private ApiKeyReader $apiKeyReader;
+    private ApiKeyAuthenticator $apiKeyAuthenticator;
 
 
     public function __construct(

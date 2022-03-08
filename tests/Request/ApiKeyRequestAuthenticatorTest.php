@@ -8,25 +8,20 @@ use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticator;
 use CultuurNet\UDB3\ApiGuard\ApiKey\Reader\QueryParameterApiKeyReader;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
 final class ApiKeyRequestAuthenticatorTest extends TestCase
 {
-    /**
-     * @var QueryParameterApiKeyReader
-     */
-    private $apiKeyReader;
+    private QueryParameterApiKeyReader $apiKeyReader;
 
     /**
-     * @var ApiKeyAuthenticator|\PHPUnit_Framework_MockObject_MockObject
+     * @var ApiKeyAuthenticator|MockObject
      */
-    private $apiKeyAuthenticator;
+    private MockObject $apiKeyAuthenticator;
 
-    /**
-     * @var ApiKeyRequestAuthenticator
-     */
-    private $requestAuthenticator;
+    private ApiKeyRequestAuthenticator $requestAuthenticator;
 
     protected function setUp(): void
     {

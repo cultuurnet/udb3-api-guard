@@ -6,10 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\ApiKey;
 
 final class ApiKey
 {
-    /**
-     * @var string
-     */
-    private $value;
+    private string $value;
 
     public function __construct(string $value)
     {

@@ -9,10 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class CustomHeaderApiKeyReader implements ApiKeyReader
 {
-    /**
-     * @var string
-     */
-    private $headerName;
+    private string $headerName;
 
     public function __construct(string $headerName)
     {

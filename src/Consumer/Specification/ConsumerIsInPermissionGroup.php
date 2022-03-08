@@ -8,10 +8,7 @@ use CultuurNet\UDB3\ApiGuard\Consumer\Consumer;
 
 final class ConsumerIsInPermissionGroup implements ConsumerSpecification
 {
-    /**
-     * @var string
-     */
-    private $groupId;
+    private string $groupId;
 
     public function __construct(string $groupId)
     {
@@ -22,7 +19,8 @@ final class ConsumerIsInPermissionGroup implements ConsumerSpecification
     {
         return in_array(
             $this->groupId,
-            $consumer->getPermissionGroupIds()
+            $consumer->getPermissionGroupIds(),
+            true
         );
     }
 }

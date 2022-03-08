@@ -16,11 +16,7 @@ final class CultureFeedApiKeyAuthenticatorTest extends TestCase
      * @var ConsumerReadRepository|MockObject
      */
     private MockObject $consumerReadRepository;
-
-    /**
-     * @var CultureFeedApiKeyAuthenticator
-     */
-    private $authenticator;
+    private CultureFeedApiKeyAuthenticator $authenticator;
 
     protected function setUp(): void
     {

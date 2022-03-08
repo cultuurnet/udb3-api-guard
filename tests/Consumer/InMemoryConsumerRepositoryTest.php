@@ -9,10 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class InMemoryConsumerRepositoryTest extends TestCase
 {
-    /**
-     * @var InMemoryConsumerRepository
-     */
-    private $repository;
+    private InMemoryConsumerRepository $repository;
 
     protected function setUp(): void
     {

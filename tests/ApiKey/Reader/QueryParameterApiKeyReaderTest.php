@@ -10,10 +10,7 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 
 final class QueryParameterApiKeyReaderTest extends TestCase
 {
-    /**
-     * @var QueryParameterApiKeyReader
-     */
-    private $reader;
+    private QueryParameterApiKeyReader $reader;
 
     protected function setUp(): void
     {
