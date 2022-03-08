@@ -7,40 +7,16 @@ namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticationException;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKeyAuthenticatorInterface;
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerWriteRepositoryInterface;
+use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
+use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerReadRepositoryInterface;
 
 final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterface
 {
-    public const STATUS_BLOCKED = 'BLOCKED';
-    public const STATUS_REMOVED = 'REMOVED';
-    /**
-     * @var \ICultureFeed
-     */
-    private $cultureFeed;
+    private ConsumerReadRepositoryInterface $consumerReadRepository;
 
-    /**
-     * @var ConsumerWriteRepositoryInterface
-     */
-    private $consumerWriteRepository;
-
-    /**
-     * @var bool
-     */
-    private $includePermissions;
-
-    /**
-     *   CultureFeed returns a consumer detail while authenticating.
-     *   This consumer will be written to the injected write repository as a
-     *   form of caching.
-     */
-    public function __construct(
-        \ICultureFeed $cultureFeed,
-        ConsumerWriteRepositoryInterface $consumerWriteRepository,
-        bool $includePermissions = false
-    ) {
-        $this->cultureFeed = $cultureFeed;
-        $this->consumerWriteRepository = $consumerWriteRepository;
-        $this->includePermissions = $includePermissions;
+    public function __construct(ConsumerReadRepositoryInterface $consumerReadRepository)
+    {
+        $this->consumerReadRepository = $consumerReadRepository;
     }
 
     /**
@@ -48,28 +24,22 @@ final class CultureFeedApiKeyAuthenticator implements ApiKeyAuthenticatorInterfa
      */
     public function authenticate(ApiKey $apiKey): void
     {
-        try {
-            $consumer = $this->cultureFeed->getServiceConsumerByApiKey(
-                $apiKey->toString(),
-                $this->includePermissions
-            );
-        } catch (\Exception $e) {
+        $consumer = $this->consumerReadRepository->getConsumer($apiKey);
+        if ($consumer === null) {
             throw ApiKeyAuthenticationException::forApiKey($apiKey);
         }
 
-        $this->guardAgainstInvalidConsumerStatus($apiKey, $consumer);
-
-        $this->consumerWriteRepository->setConsumer($apiKey, new CultureFeedConsumerAdapter($consumer));
+        $this->guardAgainstInvalidConsumerStatus($consumer);
     }
 
-    private function guardAgainstInvalidConsumerStatus(ApiKey $apiKey, \CultureFeed_Consumer $consumer): void
+    private function guardAgainstInvalidConsumerStatus(ConsumerInterface $consumer): void
     {
-        if ($consumer->status === self::STATUS_BLOCKED) {
-            throw ApiKeyAuthenticationException::forApiKey($apiKey, 'Key is blocked');
+        if ($consumer->isBlocked()) {
+            throw ApiKeyAuthenticationException::forApiKey($consumer->getApiKey(), 'Key is blocked');
         }
 
-        if ($consumer->status === self::STATUS_REMOVED) {
-            throw ApiKeyAuthenticationException::forApiKey($apiKey, 'Key is removed');
+        if ($consumer->isRemoved()) {
+            throw ApiKeyAuthenticationException::forApiKey($consumer->getApiKey(), 'Key is removed');
         }
     }
 }
