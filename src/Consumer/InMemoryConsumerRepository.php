@@ -13,22 +13,36 @@ final class InMemoryConsumerRepository implements
     /**
      * @var ConsumerInterface[]
      */
-    private $consumers = [];
+    private array $consumers = [];
+
+    private ?ConsumerReadRepositoryInterface $fallbackReadRepository;
+
+    public function __construct(?ConsumerReadRepositoryInterface $fallbackReadRepository = null)
+    {
+        $this->fallbackReadRepository = $fallbackReadRepository;
+    }
 
     public function getConsumer(ApiKey $apiKey): ?ConsumerInterface
     {
-        $apiKey = $apiKey->toString();
+        if (isset($this->consumers[$apiKey->toString()])) {
+            return $this->consumers[$apiKey->toString()];
+        }
 
-        if (isset($this->consumers[$apiKey])) {
-            return $this->consumers[$apiKey];
-        } else {
+        if ($this->fallbackReadRepository === null) {
             return null;
         }
+
+        $fallback = $this->fallbackReadRepository->getConsumer($apiKey);
+        if ($fallback === null) {
+            return null;
+        }
+
+        $this->setConsumer($apiKey, $fallback);
+        return $fallback;
     }
 
     public function setConsumer(ApiKey $apiKey, ConsumerInterface $consumer): void
     {
-        $apiKey = $apiKey->toString();
-        $this->consumers[$apiKey] = $consumer;
+        $this->consumers[$apiKey->toString()] = $consumer;
     }
 }
