@@ -14,19 +14,16 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 
 final class ApiKeyRequestAuthenticatorTest extends TestCase
 {
-    private QueryParameterApiKeyReader $apiKeyReader;
-
     private MockObject $apiKeyAuthenticator;
 
     private ApiKeyRequestAuthenticator $requestAuthenticator;
 
     protected function setUp(): void
     {
-        $this->apiKeyReader = new QueryParameterApiKeyReader('apiKey');
         $this->apiKeyAuthenticator = $this->createMock(ApiKeyAuthenticator::class);
 
         $this->requestAuthenticator = new ApiKeyRequestAuthenticator(
-            $this->apiKeyReader,
+            new QueryParameterApiKeyReader('apiKey'),
             $this->apiKeyAuthenticator
         );
     }
