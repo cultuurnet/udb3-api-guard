@@ -7,14 +7,14 @@ namespace CultuurNet\UDB3\ApiGuard\ApiKey\Reader;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class CompositeApiKeyReader implements ApiKeyReaderInterface
+final class CompositeApiKeyReader implements ApiKeyReader
 {
     /**
-     * @var ApiKeyReaderInterface[]
+     * @var ApiKeyReader[]
      */
-    private $apiKeyReaders;
+    private array $apiKeyReaders;
 
-    public function __construct(ApiKeyReaderInterface ...$apiKeyReaders)
+    public function __construct(ApiKeyReader ...$apiKeyReaders)
     {
         $this->apiKeyReaders = $apiKeyReaders;
     }

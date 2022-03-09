@@ -6,7 +6,7 @@ namespace CultuurNet\UDB3\ApiGuard\Consumer;
 
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
 
-interface ConsumerInterface
+interface Consumer
 {
     public function getApiKey(): ApiKey;
 
@@ -15,4 +15,7 @@ interface ConsumerInterface
     public function getPermissionGroupIds(): array;
 
     public function getName(): ?string;
+
+    public function isBlocked(): bool;
+    public function isRemoved(): bool;
 }

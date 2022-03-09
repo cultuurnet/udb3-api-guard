@@ -14,12 +14,9 @@ use Slim\Psr7\Request;
 
 final class CustomHeaderApiKeyReaderTest extends TestCase
 {
-    /**
-     * @var CustomHeaderApiKeyReader
-     */
-    private $reader;
+    private CustomHeaderApiKeyReader $reader;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->reader = new CustomHeaderApiKeyReader('X-Api-Key');
     }

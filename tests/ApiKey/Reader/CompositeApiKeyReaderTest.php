@@ -75,10 +75,10 @@ final class CompositeApiKeyReaderTest extends TestCase
     }
 
     /**
-     * @return ApiKeyReaderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @return ApiKeyReader|\PHPUnit_Framework_MockObject_MockObject
      */
     private function getMockReader()
     {
-        return $this->createMock(ApiKeyReaderInterface::class);
+        return $this->createMock(ApiKeyReader::class);
     }
 }

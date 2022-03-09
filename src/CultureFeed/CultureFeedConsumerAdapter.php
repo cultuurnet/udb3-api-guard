@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace CultuurNet\UDB3\ApiGuard\CultureFeed;
 
+use CultureFeed_Consumer;
 use CultuurNet\UDB3\ApiGuard\ApiKey\ApiKey;
-use CultuurNet\UDB3\ApiGuard\Consumer\ConsumerInterface;
+use CultuurNet\UDB3\ApiGuard\Consumer\Consumer;
 
-final class CultureFeedConsumerAdapter implements ConsumerInterface
+final class CultureFeedConsumerAdapter implements Consumer
 {
-    /**
-     * @var \CultureFeed_Consumer
-     */
-    private $cfConsumer;
+    private CultureFeed_Consumer $cfConsumer;
 
-    public function __construct(\CultureFeed_Consumer $cfConsumer)
+    public function __construct(CultureFeed_Consumer $cfConsumer)
     {
         if (!isset($cfConsumer->apiKeySapi3)) {
             throw new \InvalidArgumentException('Given CultureFeed_Consumer has no "apiKeySapi3" value.');
@@ -55,5 +53,15 @@ final class CultureFeedConsumerAdapter implements ConsumerInterface
     public function getName(): ?string
     {
         return  $this->cfConsumer->name;
+    }
+
+    public function isBlocked(): bool
+    {
+        return $this->cfConsumer->status === 'BLOCKED';
+    }
+
+    public function isRemoved(): bool
+    {
+        return $this->cfConsumer->status === 'REMOVED';
     }
 }
